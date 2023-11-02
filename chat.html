@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Application</title>
+  <style>
+    /* Add your CSS styles for message boxes, sent, and received messages here */
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message-box {
+      display: inline-block;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 4px;
+    }
+
+    .sent-message {
+      background-color: #007BFF;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .received-message {
+      background-color: #E0E0E0;
+      color: black;
+      align-self: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" id="chat-container">
+    <!-- Existing chat messages will be appended here -->
+  </div>
+
+  <form>
+    <ul id="messages"></ul>
+    <input id="message" autocomplete="off" /><button id="sendButton">Send</button>
+  </form>
+  <div id="typingIndicator"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    const socket = io(); // Initialize the socket.io client
+
+    // Handle form submission to send chat messages
+    $('form').submit(() => {
+      const message = $('#message').val();
+      // Send the message to the server with the username
+      socket.emit('chat message', { username, text: message });
+      $('#message').val('');
+      return false;
+    });
+
+    // Receive and display chat messages, including timestamp formatting
+    socket.on('chat message', (message) => {
+      const formattedTimestamp = new Date(message.timestamp).toLocaleString();
+      const messageText = `${message.username}: ${message.text} (${formattedTimestamp})`;
+      const messageContainer = document.createElement('div');
+
+      // Apply appropriate CSS class based on sender or receiver
+      if (message.username === username) {
+        messageContainer.className = 'message-box sent-message';
+      } else {
+        messageContainer.className = 'message-box received-message';
+      }
+
+      messageContainer.innerHTML = messageText;
+      const chatContainer = document.getElementById('chat-container');
+      chatContainer.appendChild(messageContainer);
+    });
+
+    // Handle typing indicators
+    const inputField = document.getElementById('message');
+    inputField.addEventListener('input', () => {
+      socket.emit('typing', { username });
+    });
+
+    // Handle received typing events (display "User is typing...")
+    let typingTimeout;
+    socket.on('typing', (data) => {
+      const typingMessage = `${data.username} is typing...`;
+      $('#typingIndicator').text(typingMessage); // Update the typing indicator
+
+      // Clear the typing indicator after a certain delay (e.g., 3 seconds)
+      clearTimeout(typingTimeout);
+      typingTimeout = setTimeout(() => {
+        if ($('#message').val() === '') {
+          $('#typingIndicator').text(''); // Clear the typing indicator if the input field is empty
+        }
+      }, 1000); // Adjust the delay as needed
+    });
+
+    // Handle input changes to clear the typing indicator when the input field is empty
+    $('#message').on('input', () => {
+      if ($('#message').val() === '') {
+        $('#typingIndicator').text(''); // Clear the typing indicator
+      }
+    });
+  </script>
+</body>
+</html>

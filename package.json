@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.7.2"
+  },
+  "name": "chatapp",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^27.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run electron\"",
+    "server": "node app.js",
+    "electron": "electron main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
