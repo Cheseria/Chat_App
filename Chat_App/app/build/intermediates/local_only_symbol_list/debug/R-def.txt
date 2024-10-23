@@ -1,0 +1,34 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color grey
+color peach
+color white
+drawable bg_chat_item_other
+drawable bg_chat_item_self
+drawable bg_send_box
+drawable bg_type_box
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id btnAbout
+id btnProceed
+id btnSend
+id etMsg
+id etUsername
+id msg
+id name
+id rvChat
+id tvUsername
+layout activity_main
+layout activity_user_name
+layout item_chat_other
+layout item_chat_self
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string title_activity_card
+string title_activity_theme_card
+style Base.Theme.Chat_App
+style Theme.Chat_App
+xml backup_rules
+xml data_extraction_rules

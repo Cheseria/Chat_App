@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="grey">#E0E0E0</color>
+    <color name="peach">#FF9999</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Chat_App</string>
+    <string name="title_activity_card">Card</string>
+    <string name="title_activity_theme_card">ThemeCard</string>
+    <style name="Base.Theme.Chat_App" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Chat_App" parent="Base.Theme.Chat_App"/>
+</resources>

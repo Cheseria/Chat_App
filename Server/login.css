@@ -1,0 +1,30 @@
+body{
+    font-family: 'Gluten', cursive;
+    margin: auto;
+    text-align: center;
+    background-image: url("background.jpg");
+    margin-top: 200px;
+}
+
+h1{
+    font-size: 50px;
+}
+
+input{
+    padding: 10px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 16px;
+    margin: 5px;
+}
+
+#button{
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background: #2d2926;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Comfortaa', sans-serif;
+    margin: 5px;
+}

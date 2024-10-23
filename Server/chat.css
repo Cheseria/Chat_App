@@ -1,0 +1,74 @@
+body{
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.chat-container {
+    display: flex;
+    max-height: 740px;
+    flex-direction: column;
+    padding-bottom: 60px; /* Add padding at the bottom to prevent overlap with input */
+    overflow-y: auto;
+  }
+  
+  
+  .message-box {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 4px;
+  }
+
+  .sent-message {
+    background-color: #FF9999;
+    color: white;
+    align-self: flex-end;
+  }
+
+  .received-message {
+    background-color: #E0E0E0;
+    color: black;
+    align-self: flex-start;
+  }
+
+  form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: #f1f1f1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+  #message {
+    flex: 0.95; /* Take up all available space in the form */
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+#sendButton {
+    width: 80px;
+    padding: 8px;
+    background-color: #FF9999;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.username {
+    font-weight: bold; /* Make the username bold */
+  }
+  
+  .message-text {
+    font-size: 14px; /* Adjust the font size as needed */
+    /* Add any other styles for the message text */
+  }
+  
+  .timestamp {
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #777; /* Optionally, set a color for the timestamp */
+    margin-top: 5px; /* Add spacing between the message text and timestamp */
+  }
